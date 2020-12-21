@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}My shop{% endblock %}</title>
+  <link href="{% static 'shop/base.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <a href="/" class="logo">အဝတ်အစားမှာထိပ် ကိုထွန်းရဲ့"ရိပ်"</a>
+  </div>
+
+  <div id="subheader">
+    <div class="cart">
+
+<form class="form-inline" action="{% url 'shop:search' %}" method="get">
+<input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
+<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+{% with total_items=cart|length %}
+  {% if cart|length > 0 %}
+    စျေးစာရင်း - 
+    <a href="{% url 'cart:cart_detail' %}">
+    {{ total_items }} item{{ total_items|pluralize }},
+    {{ cart.get_total_price }} MMK
+    </a>
+    {% else %}
+    စျေးစာရင်း
+  {% endif %}
+{% endwith %}
+
+    </div>
+  </div>
+  <div id="content">
+    {% block content %}
+      
+    {% endblock %}
+  </div>
+</body>
+</html>

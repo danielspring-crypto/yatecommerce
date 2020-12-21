@@ -1,0 +1,45 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+	{{ product.name }}
+{% endblock %}
+
+{% block content %}
+	
+	<div class="product-detail">
+		<img src="{{ product.image.url }}">
+		<h1>{{ product.name }}</h1>
+		<h2><a href="{{ product.category.get_absolute_url }}">
+			{{ product.category }}
+		</a></h2>
+
+<p class="tags">
+Tags:
+  {% for tag in product.tags.all %}
+    <a href="{% url 'shop:product_list_by_tag' tag.slug %}">
+      {{ tag.name }}
+    </a>
+  {% if not forloop.last %}, {% endif %}
+  {% endfor %}
+</p>
+
+		<p class="price">{{ product.price }} MMK</p>
+			<form action="{% url 'cart:cart_add' product.id %}" method="post">
+				{{ cart_product_form }}
+				{% csrf_token %}
+				<input type="submit" value="Add to cart">
+			</form>		
+		{{ product.description|linebreaks }}
+	</div>
+
+	<h2>Similar posts</h2>
+	{% for product in similar_products %}
+		<p>
+			<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" width="30%"></a>
+		</p>
+	{% empty %}
+		There are no similar posts yet.
+	{% endfor %}
+	
+{% endblock %}
