@@ -1,0 +1,68 @@
+.top_logo{
+    max-width: 110px;
+}
+
+.brand-item{
+    /* background: red; */
+}
+
+/* .top_single_area{
+
+    justify-content: space-between;
+
+} */
+
+.search-box{
+    position: relative;
+}
+
+.search-box form .form-control{
+    width: 600px;
+    height: 39px;
+    border: none;
+    background-color: #f4f2f8;
+    border-radius: 0;
+    display: inline !important;
+    /* position: relative; */
+}
+
+.search-box form button{
+    position: absolute;
+    background: #a15de3;
+    color: #fff;
+    right: 2px;
+}
+
+.row.service-showcase {
+    background: #f1f1f1;
+    margin-bottom: 60px;
+    padding: 40px;
+}
+
+.row.service-showcase div {
+    text-align: center;
+}
+
+.row.service-showcase div i {
+    font-size: 50px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+p.service-header {
+    font-weight: 700;
+}
+
+p.service-desc {
+    color: #999;
+}
+
+.footer-logo img{
+    width: 50%;
+    
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }

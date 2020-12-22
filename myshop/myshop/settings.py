@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'coupons.apps.CouponsConfig',
     'taggit',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,4 @@ CART_SESSION_ID = 'cart'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,42 +1,169 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <title>{% block title %}My shop{% endblock %}</title>
-  <link href="{% static 'shop/base.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="Yate Website" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title  -->
+    <title>Yate - Your trusted Shopping Website</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static 'shop/img/core-img/favicon.png' %}">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'shop/css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'shop/css/responsive.css' %}" rel="stylesheet">
+
+    <style type="text/css">
+      .b1{
+        text-decoration: none;
+        color : #123456;
+      }
+    </style>
+
 </head>
+
 <body>
-  <div id="header">
-    <a href="/" class="logo">အဝတ်အစားမှာထိပ် ကိုထွန်းရဲ့"ရိပ်"</a>
-  </div>
 
-  <div id="subheader">
-    <div class="cart">
+{% block sidebar %}
 
-<form class="form-inline" action="{% url 'shop:search' %}" method="get">
-<input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
-<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+{% endblock %}
 
-{% with total_items=cart|length %}
-  {% if cart|length > 0 %}
-    စျေးစာရင်း - 
-    <a href="{% url 'cart:cart_detail' %}">
-    {{ total_items }} item{{ total_items|pluralize }},
-    {{ cart.get_total_price }} MMK
-    </a>
-    {% else %}
-    စျေးစာရင်း
-  {% endif %}
-{% endwith %}
 
+    <div id="wrapper">
+
+        <!-- ****** Header Area Start ****** -->
+        <header class="header_area">
+            <!-- Top Header Area Start -->
+            <div class="top_header_area">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-12 d-md-flex justify-content-between align-items-center mt-2">
+                            <!-- <div class="top_single_area d-flex align-items-center"> -->
+                                <!-- Logo Area -->
+                                <div class="top_logo">
+                                    <a href="#"><img src="{% static 'shop/img/core-img/logo.png' %}" alt="Logo"></a>
+                                </div>
+                                <!-- Search Box -->
+{% block search %}
+
+{% endblock %}
+                                <!-- Cart & Menu Area -->
+                                <div class="header-cart-menu">
+                                    <!-- Cart Area -->
+                                    <div class="cart">
+                                    {% with total_items=cart|length %}
+                                        {% if cart|length > 0 %}
+                                        <a href="{% url 'cart:cart_detail' %}" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ total_items }}</span> <i class="ti-bag"></i></a>
+                                            
+                                            <a href="{% url 'cart:cart_detail' %}">
+                                            
+                                            {{ cart.get_total_price }} MMK
+                                            </a>
+                                            {% else %}
+                                            စျေးစာရင်း
+                                          {% endif %}
+                                        {% endwith %}
+                                            
+                                        
+                                        
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Header Area End -->
+{% block nav %}
+
+{% endblock %}            
+        <!-- ****** Header Area End ****** -->
+        
+
+        <!-- ****** Welcome Slides Area Start ****** -->
+{% block image %}
+
+{% endblock %}
+        <!-- ****** Top Catagory Area End ****** -->
+
+        <!-- ****** Quick View Modal Area Start ****** -->
+        
+        <!-- ****** Quick View Modal Area End ****** -->
+
+        <!-- ****** New Arrivals Area Start ****** -->
+{% block content %}
+
+{% endblock %}
+
+{% block section %}
+
+{% endblock %}
+        <!-- ****** Offer Area End ****** -->
+
+        
+
+        <!-- ****** Footer Area Start ****** -->
+{% block footer %}
+
+{% endblock %}
+        <!-- ****** Footer Area End ****** -->
     </div>
-  </div>
-  <div id="content">
-    {% block content %}
+    <!-- /.wrapper end -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'shop/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'shop/js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'shop/js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'shop/js/active.js' %}"></script>
+
+    <script>
+        var div = document.createElement('div');
+        div.className = 'fb-customerchat';
+        div.setAttribute('page_id', '101115448038063');
+        div.setAttribute('ref', 'livechat');
+        document.body.appendChild(div);
+        window.fbMessengerPlugins = window.fbMessengerPlugins || {
+          init: function () {
+            FB.init({
+              appId            : '1678638095724206',
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v8.0'
+            });
+          }, callable: []
+        };
+        window.fbAsyncInit = window.fbAsyncInit || function () {
+          window.fbMessengerPlugins.callable.forEach(function (item) { item(); });
+          window.fbMessengerPlugins.init();
+        };
+        setTimeout(function () {
+          (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        }, 0);
+      </script>
       
-    {% endblock %}
-  </div>
+
 </body>
+
 </html>
