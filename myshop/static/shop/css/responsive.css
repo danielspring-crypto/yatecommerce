@@ -45,7 +45,7 @@
         min-width: 200px;
     }
     .single_footer_area {
-        margin-bottom: 100px;
+        margin-bottom: 40px;
     }
     .karl-new-arrivals div .product-description h4.product-price{
         font-size: 16px;
@@ -145,13 +145,13 @@
         padding: 15px;
         background-color: #f4f2f8;
         margin-bottom: 30px;
-        
+
     }
     .karl-new-arrivals div .product-description h4.product-price{
         font-size: 16px;
     }
     .single_footer_area {
-        margin-bottom: 100px;
+        margin-bottom: 40px;
     }
     .footer_social_area > a {
         font-size: 18px;

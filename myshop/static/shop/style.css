@@ -59,10 +59,14 @@ p.service-desc {
 
 .footer-logo img{
     width: 50%;
-    
+
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
+ }
+
+ .hide{
+     display:none;
  }

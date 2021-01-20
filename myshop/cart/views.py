@@ -4,7 +4,10 @@ from shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 from coupons.forms import CouponApplyForm
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 @require_POST
 def cart_add(request, product_id):
 	cart = Cart(request)

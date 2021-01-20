@@ -8,90 +8,36 @@
 
 {% block sidebar %}
 
-<div class="catagories-side-menu">
+<!--<div class="catagories-side-menu">-->
         <!-- Close Icon -->
-        <div id="sideMenuClose">
-            <i class="ti-close"></i>
-        </div>
+<!--        <div id="sideMenuClose">-->
+<!--            <i class="ti-close"></i>-->
+<!--        </div>-->
         <!--  Side Nav  -->
-        <div class="nav-side-menu">
-            <div class="menu-list">
-                <h6>Categories</h6>
-                <ul id="menu-content" class="menu-content collapse out">
+<!--        <div class="nav-side-menu">-->
+<!--            <div class="menu-list">-->
+<!--                <h6>Categories</h6>-->
+<!--                <ul id="menu-content" class="menu-content collapse out">-->
                     <!-- Single Item -->
-                    <li data-toggle="collapse" data-target="#women" class="collapsed active">
-                        <a href="#">Women's <span class="arrow"></span></a>
-                        <ul class="sub-menu collapse" id="women">
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                        </ul>
-                    </li>
+<!--                {% for c in categories %}-->
+
                     <!-- Single Item -->
-                    <li data-toggle="collapse" data-target="#man" class="collapsed">
-                        <a href="#">Men's <span class="arrow"></span></a>
-                        <ul class="sub-menu collapse" id="man">
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                        </ul>
-                    </li>
+<!--                    <li>-->
+<!--                        <a href="{{ c.person.get_absolute_url }}">{{ c.name }}<span class="arrow"></span></a>-->
+<!--                    </li>-->
                     <!-- Single Item -->
-                    <li data-toggle="collapse" data-target="#kids" class="collapsed">
-                        <a href="#">Home<span class="arrow"></span></a>
-                        <ul class="sub-menu collapse" id="kids">
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                        </ul>
-                    </li>
-                    <!-- Single Item -->
-                    <li data-toggle="collapse" data-target="#bags" class="collapsed">
-                        <a href="#">Lifestyle<span class="arrow"></span></a>
-                        <ul class="sub-menu collapse" id="bags">
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                        </ul>
-                    </li>
-                    <!-- Single Item -->
-                    <li data-toggle="collapse" data-target="#eyewear" class="collapsed">
-                        <a href="#">Beauty</a><span class="arrow"></span></a>
-                        <ul class="sub-menu collapse" id="eyewear">
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                        </ul>
-                    </li>
-                    <!-- Single Item -->
-                    <li data-toggle="collapse" data-target="#footwear" class="collapsed">
-                        <a href="#">Gifts <span class="arrow"></span></a>
-                        <ul class="sub-menu collapse" id="footwear">
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Brand</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<!--                {% endfor %}-->
+
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 {% endblock %}
 
 {% block search %}
+
+
 
 <div class="search-box">
   <form action="{% url 'shop:search' %}" method="get">
@@ -107,13 +53,15 @@
 {% block nav %}
 
 <div class="main_header_area">
+
+
                 <div class="container h-100">
                     <div class="row h-100">
                         <div class="col-12 d-md-flex align-items-center justify-content-between">
 
-                            <div class="header-right-side-menu ml-15">
-                                <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
-                            </div>
+                            <!--<div class="header-right-side-menu ml-15">-->
+                            <!--    <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>-->
+                            <!--</div>-->
                             <!-- Menu Area -->
                             <div class="main-menu-area">
                                 <nav class="navbar navbar-expand-lg align-items-start">
@@ -133,15 +81,22 @@
                             </div>
                             <!-- Header Social Area -->
                             <div class="header-social-area">
-                                <a href="https://www.facebook.com/yatemyanmar/">
-                                Join us on Facebook
-                                </a>
+                                {% if user.is_authenticated %}
+                                    <a class="btn btn-sm cart-submit d-block" href="{% url 'profile' %}">Welcome, {{ user.username }}</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 
 {% endblock %}
 
@@ -153,85 +108,63 @@
 <section class="welcome_area">
             <div class="welcome_slides owl-carousel">
                 <!-- Single Slide Start -->
-                <div class="single_slide height-600 bg-img background-overlay" style="background-image: url({% static 'shop/img/bg-img/bg-1.jpg' %});">
+                {% for x in covers1 %}
+                <div class="single_slide height-600 bg-img background-overlay" style="background-image: url({{ x.image1.url }});">
                     <div class="container h-100">
                         <div class="row h-100 align-items-center">
                             <div class="col-12">
                                 <div class="welcome_slide_text">
-                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
-                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Furniture</h2>
-                                    <a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
+                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">{{ x.text1 }}</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">{{ x.body1 }}</h2>
+                                    <!--<a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
-                <!-- Single Slide Start -->
-                <div class="single_slide height-600 bg-img background-overlay" style="background-image: url({% static 'shop/img/bg-img/bg-2.jpg' %});">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center">
-                            <div class="col-12">
-                                <div class="welcome_slide_text">
-                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
-                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">Couple Collection</h2>
-                                    <a href="#" class="btn karl-btn" data-animation="fadeInLeftBig" data-delay="1s" data-duration="500ms">Check Collection</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Slide Start -->
-                <div class="single_slide height-600 bg-img background-overlay" style="background-image: url({% static 'shop/img/bg-img/bg-3.jpg' %});">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center">
-                            <div class="col-12">
-                                <div class="welcome_slide_text">
-                                    <h6 data-animation="fadeInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
-                                    <h2 data-animation="bounceInDown" data-delay="500ms" data-duration="500ms">Fashion</h2>
-                                    <a href="#" class="btn karl-btn" data-animation="fadeInRightBig" data-delay="1s" data-duration="500ms">Check Collection</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <!-- ****** Welcome Slides Area End ****** -->
 
         <!-- ****** Top Catagory Area Start ****** -->
         <section class="top_catagory_area d-md-flex clearfix">
-            <!-- Single Catagory -->
-            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url({% static 'shop/img/bg-img/bg-4.jpg' %});">
+        {% for x in covers2 %}
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url({{ x.image2.url }});">
                 <div class="catagory-content">
-                    <h6>Search your needs on</h6>
-                    <h2>Local Brands</h2>
-                    <a href="#" class="btn karl-btn">SHOP NOW</a>
+                    <!--<h6>{{ x.text2 }}</h6>-->
+                    <h2>{{ x.body2 }}</h2>
+                    <a href="/product/search/?q=global" class="btn karl-btn">SHOP NOW</a>
                 </div>
             </div>
-            <!-- Single Catagory -->
-            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url({% static 'shop/img/bg-img/bg-5.jpg' %});">
+        {% endfor %}
+
+        {% for x in covers4 %}
+            <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url({{ x.banner2image.url }});">
                 <div class="catagory-content">
-                    <h6>Search your needs on</h6>
-                    <h2>Global Brands</h2>
-                    <a href="#" class="btn karl-btn">SHOP NOW</a>
+                    <!--<h6>{{ x.text2 }}</h6>-->
+                    <h2>{{ x.banner2body2 }}</h2>
+                    <a href="/product/search/?q=local" class="btn karl-btn">SHOP NOW</a>
                 </div>
             </div>
+        {% endfor %}
         </section>
 
 {% endblock %}
-<!-- 
+<!--
 ################################################################### -->
 
 {% block content %}
 
-<section class="new_arrivals_area section_padding_100_0 clearfix">
+
+
+<section class="new_arrivals_area section_padding_100 clearfix" style="margin-top:-20px !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="section_heading text-center">
-                            <h2>New Arrivals</h2>
+                            <h2>Search</h2>
                         </div>
                     </div>
                 </div>
@@ -239,9 +172,9 @@
 
             <div class="karl-projects-menu mb-100">
                 <div class="text-center portfolio-menu">
-                  
+
                   <a class="btn active" href="{% url 'shop:product_list' %}">All</a>
-                  
+
                   {% for p in people %}
                     <a class="btn active" href="{{ p.get_absolute_url }}">{{ p.name }}</a>
                   {% endfor %}
@@ -276,10 +209,10 @@
 {% endfor %}
 
                     <!-- Single gallery Item Start -->
-                    
+
                     <!-- Single gallery Item Start -->
-                    
-                    
+
+
                 </div>
             </div>
         </section>
@@ -289,14 +222,14 @@
 
         <!-- ****** Offer Area Start ****** -->
       {% block section %}
-
-        <section class="offer_area height-300 section_padding_100 bg-img" style="background-image: url({% static 'shop/img/bg-img/bg-6.jpg' %});background-position: center;">
+      {% for x in covers3 %}
+        <section class="offer_area height-300 section_padding_100 bg-img" style="background-image: url({{ x.image3.url }});background-position: center;">
             <div class="container h-100">
                 <div class="row h-100 align-items-end justify-content-start">
                     <div class="col-12 col-md-8 col-lg-6">
                         <div class="offer-content-area wow fadeInUp" data-wow-delay="1s">
-                            <h2>Happy Myanmar Thadingyut Festival</h2>
-                            <p>wish you all best</p>
+                            <h2>{{ x.text3 }}</h2><br>
+                            <p>{{ x.body3 }}</p>
                             <!-- <div class="offer-product-price">
                                 <h3><span class="regular-price">$25.90</span> $15.90</h3>
                             </div> -->
@@ -306,7 +239,7 @@
                 </div>
             </div>
         </section>
-
+        {% endfor %}
       {% endblock %}
 
 {% block footer %}
@@ -351,22 +284,22 @@
                         </div>
                     </div>
                     <!-- Single Footer Area Start -->
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                         <div class="single_footer_area">
                             <ul class="footer_widget_menu">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Faq</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="{% url 'shop:about' %}">About</a></li>
+                                <li><a href="{% url 'shop:term' %}">Terms & Conditions</a></li>
+                                <li><a href="{% url 'shop:help' %}">Faq</a></li>
+                                <li><a href="{% url 'shop:contact' %}">Contact</a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- Single Footer Area Start -->
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                         <div class="single_footer_area">
                             <ul class="footer_widget_menu">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Our Policies</a></li>
+                                <li><a href="{% url 'profile' %}">My Account</a></li>
+                                <li><a href="{% url 'shop:term' %}">Our Policies</a></li>
                             </ul>
                         </div>
                     </div>
@@ -397,4 +330,27 @@
                 </div>
             </div>
         </footer>
+        <!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v9.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="106042591301293">
+      </div>
 {% endblock %}

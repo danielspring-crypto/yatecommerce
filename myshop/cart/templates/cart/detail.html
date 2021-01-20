@@ -87,9 +87,13 @@
                 <div class="row" style="margin-top: 100px;">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="coupon-code-area mt-70">
+                            <div class="cart-page-heading">
+                                <h5>Cupon code</h5>
+                                <p>Enter your cupone code</p>
+                            </div>
                             <form action="{% url 'coupons:apply' %}" method="post">
                             	    {{ coupon_apply_form }}
-								    <input type="submit" class="btn btn-primary b1" value="Apply">
+								    <button type="submit" style="margin-top:32px">Apply</button>
 								    {% csrf_token %}
                             </form>
 

@@ -1,5 +1,5 @@
 {% load static %}
-<html> 
+<html>
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
     </style>
 
 </head>
-<body> 
-  
+<body>
+
 <!-- Image and text -->
 <p align="center">
       <img src="https://scontent.frgn7-1.fna.fbcdn.net/v/t1.0-9/122150526_106043587967860_776458994972612519_o.jpg?_nc_cat=107&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFDIR0G6aCzHYL1gY_INm6pjpj_f3hWQh-OmP9_eFZCH6P_ex_8158izxa_u6pjRMu1lPUPGM4OeTI4DZ-JeLOH&_nc_ohc=k9VrX5nqnBoAX8gEWJZ&_nc_ht=scontent.frgn7-1.fna&oh=9a7e7f66ef6d8e674112be6709f2a85b&oe=60044012" alt="" width="30" height="24" class="d-inline-block align-top">
@@ -33,52 +33,180 @@
 <br>
 <p class="left">
     Invoice no. {{ order.id }}<br>
-      Date : {{ order.created|date:"M d, Y" }} 
+      Date : {{ order.created|date:"M d, Y" }}
 </p>
 
  <hr>
-  <h3 class="left">Customer Data</h3> 
-  <p class="left"> 
-    Name : {{ order.first_name }} {{ order.last_name }}<br> 
-    Email : {{ order.email }}<br> 
-    Address : {{ order.address }}, {{ order.postal_code }}, {{ order.city }} 
-  </p> 
+  <h3 class="left">Customer Data</h3>
+  <p class="left">
+    Name : {{ order.first_name }} {{ order.last_name }}<br>
+    Phone : {{ order.phone }}<br>
+    Email : {{ order.email }}<br>
+    Address : {{ order.address }}, {{ order.postal_code }}, {{ order.city }}
+  </p>
  <hr>
-  <h3>Ordered Items</h3> 
-  <table> 
-    <thead> 
-      <tr> 
-        <th align="center">Product</th> 
-        <th align="center">Price</th> 
-        <th align="center">Quantity</th> 
-        <th align="center">Cost</th> 
-      </tr> 
-    </thead> 
-    <tbody> 
-      {% for item in order.items.all %} 
-        <tr class="row{% cycle "1" "2" %}"> 
-          <td>{{ item.product.name }}</td> 
-          <td>{{ item.price }} MMK</td> 
-          <td>{{ item.quantity }}</td> 
-          <td>{{ item.get_cost }} MMK</td> 
-        </tr> 
-      {% endfor %} 
-      <tr class="total"> 
-        <td colspan="3">Total</td> 
-        <td>{{ order.get_total_cost }} MMK</td> 
-      </tr> 
-    </tbody> 
-  </table> 
+  <h3>Ordered Items</h3>
+  <table>
+    <thead>
+      <tr>
+        <th align="center">Product</th>
+        <th align="center">Price</th>
+        <th align="center">Quantity</th>
+        <th align="center">Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+        <tr class="row{% cycle "1" "2" %}">
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.price }} MMK</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.get_cost }} MMK</td>
+        </tr>
+      {% endfor %}
+      <tr class="total">
+        <td colspan="3">Total</td>
+        <td>{{ order.get_total_cost }} MMK</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <span class="{% if order.paid %}paid{% else %}pending{% endif %}"> 
+  <span class="{% if order.paid %}paid{% else %}pending{% endif %}">
     {% if order.paid %}Paid{% else %}Pending payment{% endif %} <br>
-    Delivery Fees 
-    {% if order.postal_code == "11091" %}
-      1800 MMK
-    {% elif order.postal_code == "11021" %}
-      2500 MMK
-    {% endif %}
-  </span> 
+{% if order.postal_code == "11161"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11162"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11163"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11221"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11222"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11141"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11142"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11143"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11181"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11182"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11131"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11171"  %}
+    ( Delivery Fees 1500 MMK )
+
+
+{% elif order.postal_code == "11121"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11201"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11191"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11441"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11241"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11451"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11401"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11011"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11012"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11013"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11041"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11042"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11043"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11044"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11021"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11421"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11422"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11031"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11032"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11411"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11431"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11432"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11433"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11434"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11091"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11101"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11061"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11062"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11063"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11211"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11212"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11051"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11052"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11291"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11292"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11293"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11111"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11071"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11072"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11231"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11232"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11081"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11082"  %}
+    ( Delivery Fees 1800 MMK )
+
+{% elif order.postal_code == "116001"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11371"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11361"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11301"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11321"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11311"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11331"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11381"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11261"  %}
+    ( Delivery Fees 3000 MMK )
+
+{% endif %}
+  </span>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-</body> 
-</html> 
+</body>
+</html>

@@ -18,11 +18,11 @@
                                 <ol class="carousel-indicators">
                                     <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{ product.image.url }});">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url({{ product.image.url }});">
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url({{ product.image_2.url }});">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url({{ product.image.url }});">
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url({{ product.image_3.url }});">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url({{ product.image.url }});">
+                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url({{ product.image_4.url }});">
                                     </li>
                                 </ol>
 
@@ -34,17 +34,17 @@
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="img/product-img/product-2.jpg">
-                                        <img class="d-block w-100" src="{{ product.image.url }}" alt="Second slide">
+                                        <img class="d-block w-100" src="{{ product.image_2.url }}" alt="Second slide">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="img/product-img/product-3.jpg">
-                                        <img class="d-block w-100" src="{{ product.image.url }}" alt="Third slide">
+                                        <img class="d-block w-100" src="{{ product.image_3.url }}" alt="Third slide">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="img/product-img/product-4.jpg">
-                                        <img class="d-block w-100" src="{{ product.image.url }}" alt="Fourth slide">
+                                        <img class="d-block w-100" src="{{ product.image_4.url }}" alt="Fourth slide">
                                     </a>
                                     </div>
                                 </div>
@@ -56,7 +56,11 @@
                         <div class="single_product_desc">
 
                             <h4 class="price">{{ product.name }}</h4>
-                            <h4 class="price"><a href="{{ product.person.get_absolute_url }}">{{ product.person }} Wears</a></h4>
+                            <h4 class="price">Person : <a href="{{ product.person.get_absolute_url }}">{{ product.person }}</a></h4>
+                            <p class="price">Category : {{ product.category }}</p>
+                            <p class="price">Brand : {{ product.brand }}</p>
+                            <p class="price">Color : {{ product.color }}</p>
+                            <p class="price">Size : {{ product.size }}</p>
                             <h4 class="price">{{ product.price }} MMK</h4>
 
                             <p class="available">Available: <span class="text-muted">In Stock</span></p>
@@ -68,7 +72,7 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star-o" aria-hidden="true"></i>
                             </div>
-<!-- 
+<!--
                             <div class="widget size mb-50">
                                 <h6 class="widget-title">Size</h6>
                                 <div class="widget-desc">
@@ -99,7 +103,7 @@
 								{% csrf_token %}
 								</div>
 								<input type="submit" class="btn cart-submit d-block" value="Add to cart">
-							</form>	
+							</form>
 
                             <div id="accordion" role="tablist">
                                 <div class="card">
@@ -190,4 +194,4 @@
         </section>
 {% endblock %}
 
-	
+

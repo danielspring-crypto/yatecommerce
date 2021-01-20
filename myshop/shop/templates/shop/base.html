@@ -36,7 +36,6 @@
 
 {% endblock %}
 
-
     <div id="wrapper">
 
         <!-- ****** Header Area Start ****** -->
@@ -49,7 +48,7 @@
                             <!-- <div class="top_single_area d-flex align-items-center"> -->
                                 <!-- Logo Area -->
                                 <div class="top_logo">
-                                    <a href="#"><img src="{% static 'shop/img/core-img/logo.png' %}" alt="Logo"></a>
+                                    <a href="{% url 'shop:product_list' %}"><img src="{% static 'shop/img/core-img/logo.png' %}" alt="Logo"></a>
                                 </div>
                                 <!-- Search Box -->
 {% block search %}
@@ -62,18 +61,18 @@
                                     {% with total_items=cart|length %}
                                         {% if cart|length > 0 %}
                                         <a href="{% url 'cart:cart_detail' %}" id="header-cart-btn" target="_blank"><span class="cart_quantity">{{ total_items }}</span> <i class="ti-bag"></i></a>
-                                            
+
                                             <a href="{% url 'cart:cart_detail' %}">
-                                            
+
                                             {{ cart.get_total_price }} MMK
                                             </a>
                                             {% else %}
-                                            စျေးစာရင်း
+                                                <a href="#" id="header-cart-btn" target="_blank"><i class="ti-bag"></i></a>
                                           {% endif %}
                                         {% endwith %}
-                                            
-                                        
-                                        
+
+
+
                                     </div>
                                 </div>
                             <!-- </div> -->
@@ -86,9 +85,9 @@
             <!-- Top Header Area End -->
 {% block nav %}
 
-{% endblock %}            
+{% endblock %}
         <!-- ****** Header Area End ****** -->
-        
+
 
         <!-- ****** Welcome Slides Area Start ****** -->
 {% block image %}
@@ -97,7 +96,7 @@
         <!-- ****** Top Catagory Area End ****** -->
 
         <!-- ****** Quick View Modal Area Start ****** -->
-        
+
         <!-- ****** Quick View Modal Area End ****** -->
 
         <!-- ****** New Arrivals Area Start ****** -->
@@ -110,7 +109,7 @@
 {% endblock %}
         <!-- ****** Offer Area End ****** -->
 
-        
+
 
         <!-- ****** Footer Area Start ****** -->
 {% block footer %}
@@ -130,7 +129,7 @@
     <script src="{% static 'shop/js/plugins.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'shop/js/active.js' %}"></script>
-
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
         var div = document.createElement('div');
         div.className = 'fb-customerchat';
@@ -162,7 +161,7 @@
           }(document, 'script', 'facebook-jssdk'));
         }, 0);
       </script>
-      
+
 
 </body>
 

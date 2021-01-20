@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
 <h3 align="center">Checkout</h3>
 <div class="checkout_area section_padding_100">
             <div class="container">
@@ -72,7 +73,7 @@
                             </form>-->
     <form action="." method="post" class="order-form uniForm">
 		{{ form|crispy }}
-		<p><input type="submit" class="btn btn-primary" value="Place order"></p>
+		<p><input type="submit" class="btn karl-checkout-btn" value="Place order"></p>
 		{% csrf_token %}
 	</form>
                         </div>
@@ -85,67 +86,53 @@
                                 <h5>Your Order</h5>
                                 <p>The Details</p>
                             </div>
-		{% for item in cart %}
-			{% for item in cart %}
-				<li>
-				{{ item.quantity }}x {{ item.product.name }}
-				<span>{{ item.total_price|floatformat:"2" }} MMK</span>
-				</li>
-			{% endfor %}
 
-			{% if cart.coupon %}
-				<li>
-				"{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
-				<span>- {{ cart.get_discount|floatformat:"2" }} MMK</span>
-				</li>
-			{% endif %}
-		{% endfor %}
                             <ul class="order-details-form mb-4">
                                 <li><span>Product</span> <span>Total</span></li>
-                                <li><span>Women Dress</span> <span>20,000 MMK</span></li>
-                                <li><span>Subtotal</span> <span>20,000 MMK</span></li>
-                                <li><span>Delivery</span> <span>Free</span></li>
-                                <li><span>Total</span> <span>20,000 MMK</span></li>
+                            		{% for item in cart %}
+                            			{% for item in cart %}
+                            				<li>
+                            				{{ item.quantity }}x {{ item.product.name }}
+                            				<span>{{ item.total_price|floatformat:"2" }} MMK</span>
+                            				</li>
+                            			{% endfor %}
+
+                            			{% if cart.coupon %}
+                            				<li>
+                            				"{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+                            				<span>- {{ cart.get_discount|floatformat:"2" }} MMK</span>
+                            				</li>
+                            			{% endif %}
+                            		{% endfor %}
+                                <li><span>Total</span> <span>{{ cart.get_total_price_after_discount|floatformat:"2" }} MMK</span></li>
                             </ul>
 
-
                             <div id="accordion" role="tablist" class="mb-4">
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingTwo">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
-                                        </div>
-                                    </div>
+                                <div class="custom-control custom-radio mb-30">
+                                    <input type="radio" id="customRadio1" name="customRadio" class="radiobtn custom-control-input" value="cashondeli">
+                                    <label class="custom-control-label d-flex align-items-center justify-content-between" for="customRadio1"><span>Cash On Delivery</span></label>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" role="tab" id="headingFour">
-                                        <h6 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour"><i class="fa fa-circle-o mr-3"></i>Mobile Money</a>
-                                        </h6>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>Wave Money - 0912345678</p>
-                                            <p>KBZ Pay - 0912345678</p>
-                                            <p>MyTel Pay - 0912345678</p>
-                                        </div>
+
+                                <div class="custom-control custom-radio mb-30">
+                                    <input type="radio" id="customRadio2" name="customRadio" class="radiobtn custom-control-input" value="payment">
+                                    <label class="custom-control-label d-flex align-items-center justify-content-between" for="customRadio2">
+                                        <span>Mobile Money Payment</span>
+                                    </label>
+                                    <div style="display:block;font-size: 14px;">
+                                        <span style="display:inline-block;margin:6px;color: #333333;">KPay - 0123456</span><br>
+                                        <span style="display:inline-block;margin:6px;color: #333333;">KPay - 0123456</span><br>
+                                        <span style="display:inline-block;margin:6px;color: #333333;">KPay - 0123456</span>
                                     </div>
                                 </div>
                             </div>
-                            <form action="#">
+
+                            <form action="#" class="hide" id="paymentUploadForm">
                                 <div class="form-group mb-4">
-                                    <label for="screenshot" class="btn karl-upload-btn">Upload Payment</label>
                                     <input type="file" id="screenshot" class="form-control" style="display: none;">
                                     <span id="screenshot-file"></span>
                                 </div>
                             </form>
-                            
-                            <a href="#" class="btn karl-checkout-btn">Place Order</a>
+
                         </div>
                     </div>
 
@@ -153,30 +140,53 @@
             </div>
         </div>
 
-	
-	<ul>
-		{% for item in cart %}
-			{% for item in cart %}
-				<li>
-				{{ item.quantity }}x {{ item.product.name }}
-				<span>{{ item.total_price|floatformat:"2" }} MMK</span>
-				</li>
-			{% endfor %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 
-			{% if cart.coupon %}
-				<li>
-				"{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
-				<span>- {{ cart.get_discount|floatformat:"2" }} MMK</span>
-				</li>
-			{% endif %}
-		{% endfor %}
-	</ul>
+        <script>
+            $("#screenshot").change(function() {
+                filename = this.files[0].name
+                $("#screenshot-file").text(filename)
+            });
 
-<p>Total: {{ cart.get_total_price_after_discount|floatformat:"2" }} MMK</p></div>
+            $('.radiobtn').change(function(){
 
-	<form action="." method="post" class="order-form">
-		{{ form.as_p }}
-		<p><input type="submit" value="Place order"></p>
-		{% csrf_token %}
-	</form>
+            if(this.value=='payment'){
+
+                $("#paymentUploadForm").removeClass('hide')
+
+            }else{
+
+                $("#paymentUploadForm").addClass('hide')
+
+            }
+
+        })
+        </script>
+
+<!--	<ul>-->
+<!--		{% for item in cart %}-->
+<!--			{% for item in cart %}-->
+<!--				<li>-->
+<!--				{{ item.quantity }}x {{ item.product.name }}-->
+<!--				<span>{{ item.total_price|floatformat:"2" }} MMK</span>-->
+<!--				</li>-->
+<!--			{% endfor %}-->
+
+<!--			{% if cart.coupon %}-->
+<!--				<li>-->
+<!--				"{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)-->
+<!--				<span>- {{ cart.get_discount|floatformat:"2" }} MMK</span>-->
+<!--				</li>-->
+<!--			{% endif %}-->
+<!--		{% endfor %}-->
+<!--	</ul>-->
+
+<!--<p>Total: {{ cart.get_total_price_after_discount|floatformat:"2" }} MMK</p></div>-->
+
+<!--	<form action="." method="post" class="order-form">-->
+<!--		{{ form.as_p }}-->
+<!--		<p><input type="submit" value="Place order"></p>-->
+<!--		{% csrf_token %}-->
+<!--	</form>-->
 {% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="order_history_area section_padding_100 clearfix" style="height:100vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 mx-auto">
+                    <div class="account_details_area mt-50 clearfix">
+                        <div class="account-details-page-heading">
+                            <h5 align="centrer">Login</h5>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <a href="{% url 'login' %}" class="btn account-update-btn" form="account-login-form">Login Again</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-6 mx-auto">
+                    <div class="account_details_area mt-50 clearfix">
+                        <div class="account-details-page-heading">
+                            <h5 align="centrer">Register Account</h5>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <a href="{% url 'register' %}" class="btn account-update-btn" form="account-login-form">Register</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <br><br>
+        </div>
+
+{% endblock %}
+

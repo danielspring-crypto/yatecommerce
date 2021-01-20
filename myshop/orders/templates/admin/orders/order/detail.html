@@ -38,6 +38,10 @@
     <td><a href="mailto:{{ order.email }}">{{ order.email }}</a></td>
   </tr>
   <tr>
+    <th>Phone</th>
+    <td>{{ order.phone }}</td>
+  </tr>
+  <tr>
     <th>Address</th>
     <td>{{ order.address }}, {{ order.postal_code }} {{ order.city }}</td>
   </tr>
@@ -75,10 +79,139 @@
         <tr class="total">
           <td colspan="3">Total</td>
           <td class="num">{{ order.get_total_cost }} MMK + <b>
-{% if order.postal_code == "11091" %}
-	( Delivery Fees 2000 MMK )
-{% elif order.postal_code == "11021" %}
-	( Delivery Fees 2500 MMK )
+
+{% if order.postal_code == "11161"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11162"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11163"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11221"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11222"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11141"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11142"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11143"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11181"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11182"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11131"  %}
+    ( Delivery Fees 1500 MMK )
+{% elif order.postal_code == "11171"  %}
+    ( Delivery Fees 1500 MMK )
+
+
+{% elif order.postal_code == "11121"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11201"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11191"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11441"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11241"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11451"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11401"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11011"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11012"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11013"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11041"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11042"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11043"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11044"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11021"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11421"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11422"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11031"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11032"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11411"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11431"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11432"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11433"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11434"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11091"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11101"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11061"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11062"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11063"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11211"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11212"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11051"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11052"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11291"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11292"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11293"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11111"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11071"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11072"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11231"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11232"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11081"  %}
+    ( Delivery Fees 1800 MMK )
+{% elif order.postal_code == "11082"  %}
+    ( Delivery Fees 1800 MMK )
+
+{% elif order.postal_code == "116001"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11371"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11361"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11301"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11321"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11311"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11331"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11381"  %}
+    ( Delivery Fees 3000 MMK )
+{% elif order.postal_code == "11261"  %}
+    ( Delivery Fees 3000 MMK )
+
 {% endif %}
 </b>
 
